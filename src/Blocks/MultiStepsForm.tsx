@@ -10,9 +10,10 @@ import Tittle from "./Ui/Tittle";
 
 const MultiStepsForm = () => {
     const [stepCount, setStepCount] = useState(0)
-
+const[progressCount,setProgressCount]=useState(0)
     // increase counter.
     const increaseCounter = () => {
+        setProgressCount(p=>p+10)
         if (stepCount === 2) return
         setStepCount(p => p += 1)
     }
@@ -24,13 +25,13 @@ const MultiStepsForm = () => {
 
 
     return (
-        <div className="MultiStepsFormContainer min-h-[50vh] w-[40vw]">
+        <div className="MultiStepsFormContainer min-h-[50vh] w-[40vw] py-5 px-5">
 
             {/* Step tittle */}
             <Tittle stepCount={stepCount} />
 
             {/* progress bar. */}
-            <ProgressBar progress={stepCount} />
+            <ProgressBar progress={progressCount} />
 
             {/* Form pages. */}
             <FormWrapper count={stepCount}>
@@ -40,7 +41,7 @@ const MultiStepsForm = () => {
             </FormWrapper>
 
             {/* tauggleing buttons. */}
-            <section className="flex items-center justify-between">
+            <section className="flex items-center justify-between mt-4 px-4">
                 <Button fn={decreaseCounter} text="Prev" />
                 <Button fn={increaseCounter} text="Next" />
             </section>
