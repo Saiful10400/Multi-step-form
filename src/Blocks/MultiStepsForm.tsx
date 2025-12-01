@@ -23,6 +23,9 @@ const[progressCount,setProgressCount]=useState(0)
         setStepCount(p => p -= 1)
     }
 
+    const updaterFn=(key:string,value:string|number)=>{
+
+    }
 
     return (
         <div className="MultiStepsFormContainer min-h-[50vh] w-[40vw] py-5 px-5">
@@ -35,9 +38,9 @@ const[progressCount,setProgressCount]=useState(0)
 
             {/* Form pages. */}
             <FormWrapper count={stepCount}>
+                <PersonalInfo updaterFn={updaterFn}/>
                 <Address />
                 <Payment />
-                <PersonalInfo />
             </FormWrapper>
 
             {/* tauggleing buttons. */}
