@@ -7,13 +7,14 @@ import FormWrapper from "./Util/Component/FormWrapper";
 import Button from "./Ui/Button";
 import ProgressBar from "./Ui/ProgressBar";
 import Tittle from "./Ui/Tittle";
+import initialFormData, { type TformData } from "./Storage/FormData";
 
 const MultiStepsForm = () => {
     const [stepCount, setStepCount] = useState(0)
-const[progressCount,setProgressCount]=useState(0)
+    const [progressCount, setProgressCount] = useState(0)
     // increase counter.
     const increaseCounter = () => {
-        setProgressCount(p=>p+10)
+        setProgressCount(p => p + 10)
         if (stepCount === 2) return
         setStepCount(p => p += 1)
     }
@@ -23,8 +24,13 @@ const[progressCount,setProgressCount]=useState(0)
         setStepCount(p => p -= 1)
     }
 
-    const updaterFn=(key:string,value:string|number)=>{
 
+    // cont form data.
+    const [formData, setFormData] = useState<TformData>(initialFormData)
+
+    const updaterFn = (key: string, value: string | number) => {
+        console.log(value,key)
+        setFormData(p => ({ ...p, [key]: value }))
     }
 
     return (
@@ -38,7 +44,7 @@ const[progressCount,setProgressCount]=useState(0)
 
             {/* Form pages. */}
             <FormWrapper count={stepCount}>
-                <PersonalInfo updaterFn={updaterFn}/>
+                <PersonalInfo formData={formData} updaterFn={updaterFn} />
                 <Address />
                 <Payment />
             </FormWrapper>

@@ -1,12 +1,14 @@
-import type { ChangeEventHandler } from "react";
+ import type { TformData } from "../Storage/FormData";
 import InputField from "../Ui/InputField";
 
  
 
-const PersonalInfo = ({updaterFn}:{updaterFn:ChangeEventHandler<HTMLInputElement>}) => {
+const PersonalInfo = ({updaterFn,formData}:{formData:TformData,updaterFn:(key: string, value: string | number) => void}) => {
+
+  
     return (
         <div>
-           <InputField changeFn={updaterFn} type="text" value="saiful" placeHolder="Your Name" />
+           <InputField fieldName="fullName" updaterFn={updaterFn}  type="text" value={formData["fullName"]} placeHolder="Your Name" />
         </div>
     );
 };
