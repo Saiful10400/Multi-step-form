@@ -24,6 +24,11 @@ const MultiStepsForm = () => {
         setStepCount(p => p -= 1)
     }
 
+    // const update progress count.
+    const updateProgressCount=(v:number)=>{
+        setProgressCount(v)
+    }
+
 
     // cont form data.
     const [formData, setFormData] = useState<TformData>(initialFormData)
@@ -44,7 +49,7 @@ const MultiStepsForm = () => {
 
             {/* Form pages. */}
             <FormWrapper count={stepCount}>
-                <PersonalInfo formData={formData} updaterFn={updaterFn} />
+                <PersonalInfo updateProgressCount={updateProgressCount} formData={formData} updaterFn={updaterFn} />
                 <Address />
                 <Payment />
             </FormWrapper>

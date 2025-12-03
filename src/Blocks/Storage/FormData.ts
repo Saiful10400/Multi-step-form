@@ -8,7 +8,7 @@ export  interface TformData {
   // Step 2: Address Info
   division: string;
   district: string;
-  postalCode: number;
+  postalCode: string;
   sameAsPermanent: boolean;
 
   // Step 3: Bank Info
@@ -28,7 +28,7 @@ const initialFormData: TformData = {
   // Step 2: Address Info
   division: "",
   district: "",
-  postalCode: 0,
+  postalCode: "",
   sameAsPermanent: false,
 
   // Step 3: Bank Info
