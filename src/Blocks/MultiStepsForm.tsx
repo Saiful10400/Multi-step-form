@@ -34,7 +34,7 @@ const MultiStepsForm = () => {
     const [formData, setFormData] = useState<TformData>(initialFormData)
 
     const updaterFn = (key: string, value: string | number) => {
-        console.log(value,key)
+     
         setFormData(p => ({ ...p, [key]: value }))
     }
 
