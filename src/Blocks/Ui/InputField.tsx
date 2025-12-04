@@ -1,5 +1,6 @@
-import { useState, type ChangeEventHandler } from "react";
+import { useContext, useState, type ChangeEventHandler } from "react";
 import updateProgressFn from "../Util/Function/updateProgress";
+import FormContext from "../Util/Function/ContextInt";
 
 
 
@@ -8,10 +9,10 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
 
     const unWantedValue = [""]
     const WhiteSpaceDetectRegx = /^\s+/;
-
+    const context=useContext(FormContext)
     const [error, setError] = useState<null | string>(null)
     const [clicked, setClicked] = useState<boolean>(false)
-    const [UpdatedProgress, setProgressCountUpdated] = useState<boolean>(false)
+   
 
 
     const handleErrorMessage = (InputValue: string) => {
@@ -22,11 +23,11 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
     }
 
     const handleStepProgress = (InputValue: string) => {
-        if (!UpdatedProgress) {
+        if (!context?.ValidatedField.includes(fieldName)) {
             updateProgressFn(updateProgressCount)
-            setProgressCountUpdated(true)
-        } else if (unWantedValue.includes(InputValue) && UpdatedProgress) {
-            setProgressCountUpdated(false)
+            context?.setValidatedField(p=>([...p,fieldName]))
+        } else if (unWantedValue.includes(InputValue) && context.ValidatedField.includes(fieldName)) {
+            context.setValidatedField(p=>(p.filter(i=>i!==fieldName)))
             updateProgressCount(-100 / 12)
         }
     }
@@ -45,6 +46,7 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
 
     }
 
+ 
 
     return (
         <section>

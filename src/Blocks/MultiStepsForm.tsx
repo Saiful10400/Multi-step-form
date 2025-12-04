@@ -14,7 +14,6 @@ const MultiStepsForm = () => {
     const [progressCount, setProgressCount] = useState(0)
     // increase counter.
     const increaseCounter = () => {
-        setProgressCount(p => p + 10)
         if (stepCount === 2) return
         setStepCount(p => p += 1)
     }
@@ -24,7 +23,7 @@ const MultiStepsForm = () => {
         setStepCount(p => p -= 1)
     }
 
-    // const update progress count.
+    //  update progress count.
     const updateProgressCount=(v:number)=>{
         setProgressCount(p=>p+v)
     }
