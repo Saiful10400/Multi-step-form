@@ -1,4 +1,5 @@
 import { useState, type ChangeEventHandler } from "react";
+import updateProgressFn from "../Util/Function/updateProgress";
 
 
 
@@ -7,7 +8,7 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
 
     const [error, setError] = useState<null | string>(null)
     const [clicked, setClicked] = useState<boolean>(false)
-    const[UpdatedProgress,setUpdated]
+    const [UpdatedProgress, setProgressCountUpdated] = useState<boolean>(false)
     const onChangeHandle: ChangeEventHandler<HTMLInputElement> = (e) => {
         const value = e?.target?.value
         updaterFn(fieldName, value)
@@ -19,7 +20,14 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
         }
 
         // update steps progress
-        updateProgressCount(100/12)
+        if (!UpdatedProgress) {
+            updateProgressFn(updateProgressCount)
+            setProgressCountUpdated(true)
+        } else if (value === "" && UpdatedProgress) {
+            setProgressCountUpdated(false)
+            updateProgressCount(-100/12)
+        }
+
     }
 
 

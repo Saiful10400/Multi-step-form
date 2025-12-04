@@ -26,7 +26,7 @@ const MultiStepsForm = () => {
 
     // const update progress count.
     const updateProgressCount=(v:number)=>{
-        setProgressCount(v)
+        setProgressCount(p=>p+v)
     }
 
 
