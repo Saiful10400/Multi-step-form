@@ -46,11 +46,13 @@ const InputField = ({ type, placeHolder, value, updaterFn, fieldName, errorMessa
 
     }
 
- 
+ const ondragHandle=(e)=>{
+    console.log(e)
+ }
 
     return (
         <section>
-            <input onClick={() => setClicked(true)} className={`${error ? "border-red-500" : "border-gray-400"} w-full   text-white text-lg pl-2 py-2 rounded-md border-2 focus:outline-0`} type={type} placeholder={placeHolder} value={value} onChange={onChangeHandle} />
+            <input draggable={true} onDrag={ondragHandle} onClick={() => setClicked(true)} className={`${error ? "border-red-500" : "border-gray-400"} w-full   text-white text-lg pl-2 py-2 rounded-md border-2 focus:outline-0`} type={type} placeholder={placeHolder} value={value} onChange={onChangeHandle} />
             <span className={`${error ? "opacity-100 duration-300" : "opacity-0"} text-red-400 font-semibold text-sm`}>{error}</span>
         </section>
     );
