@@ -3,7 +3,7 @@ import background from "./assets/background.jpg"
 import FrammerMotion from "./FrammerMotion/FrammerMotion";
 const App = () => {
   return (
-    <div className="flex justify-center items-center min-h-screen min-w-full" style={{ background: `url(${background})` }}>
+    <div className=" border-white min-h-screen min-w-full" style={{ background: `url(${background})` }}>
       {/* <MultiStepsForm/> */}
       <FrammerMotion />
     </div>
